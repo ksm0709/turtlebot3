@@ -1,0 +1,250 @@
+		<param name="BRIEF/Bytes" value="32"/>                                <!--[Bytes is a length of descriptor in bytes. It can be equal 16, 32 or 64 bytes.]-->
+			<param name="BRISK/Octaves" value="3"/>                                <!--[Detection octaves. Use 0 to do single scale.]-->
+			<param name="BRISK/PatternScale" value="1"/>                            <!--[Apply this scale to the pattern used for sampling the neighbourhood of a keypoint.]-->
+			<param name="BRISK/Thresh" value="30"/>                                <!--[FAST/AGAST detection threshold score.]-->
+			
+			<param name="Bayes/FullPredictionUpdate" value="false"/>                <!--[Regenerate all the prediction matrix on each iteration (otherwise only removed/added ids are updated).]-->
+			<param name="Bayes/PredictionLC" value="0.1 0.36 0.30 0.16 0.062 0.0151 0.00255 0.000324 2.5e-05 1.3e-06 4.8e-08 1.2e-09 1.9e-11 2.2e-13 1.7e-15 8.5e-18 2.9e-20 6.9e-23"/>/> <!--[Prediction of loop closures (Gaussian-like, here with sigma=1.6) - Format: {VirtualPlaceProb, LoopClosureProb, NeighborLvl1, NeighborLvl2, ...}.]-->
+			<param name="Bayes/VirtualPlacePriorThr" value="0.9"/>                  <!--[Virtual place prior]-->
+
+			<param name="DbSqlite3/CacheSize" value="10000"/>                       <!--[Sqlite cache size (default is 2000).]-->
+			<param name="DbSqlite3/InMemory" value="false"/>                        <!--[Using database in the memory instead of a file on the hard disk.]-->
+			<param name="DbSqlite3/JournalMode" value="3"/>                         <!--[0=DELETE, 1=TRUNCATE, 2=PERSIST, 3=MEMORY, 4=OFF (see sqlite3 doc : "PRAGMA journal_mode")]-->
+			<param name="DbSqlite3/Synchronous" value="0"/>                         <!--[0=OFF, 1=NORMAL, 2=FULL (see sqlite3 doc : "PRAGMA synchronous")]-->
+			<param name="DbSqlite3/TempStore" value="2"/>                           <!--[0=DEFAULT, 1=FILE, 2=MEMORY (see sqlite3 doc : "PRAGMA temp_store")]-->
+
+			<param name="FAST/Gpu" value="false"/>                                  <!--[GPU-FAST: Use GPU version of FAST. This option is enabled only if OpenCV is built with CUDA and GPUs are detected.]-->
+			<param name="FAST/GpuKeypointsRatio" value="0.05"/>                     <!--[Used with FAST GPU.]-->
+			<param name="FAST/GridCols" value="4"/>                                 <!--[Grid cols (0 to disable). Adapts the detector to partition the source image into a grid and detect points in each cell.]-->
+			<param name="FAST/GridRows" value="4"/>                                 <!--[Grid rows (0 to disable). Adapts the detector to partition the source image into a grid and detect points in each cell.]-->
+			<param name="FAST/MaxThreshold" value="200"/>                           <!--[Maximum threshold. Used only when FAST/GridRows and FAST/GridCols are set.]-->
+			<param name="FAST/MinThreshold" value="1"/>                             <!--[Minimum threshold. Used only when FAST/GridRows and FAST/GridCols are set.]-->
+			<param name="FAST/NonmaxSuppression" value="true"/>                     <!--[If true, non-maximum suppression is applied to detected corners (keypoints).]-->
+			<param name="FAST/Threshold" value="10"/>                               <!--[Threshold on difference between intensity of the central pixel and pixels of a circle around this pixel.]-->
+
+			<param name="FREAK/NOctaves" value="4"/>                                <!--[Number of octaves covered by the detected keypoints.]-->
+			<param name="FREAK/OrientationNormalized" value="true"/>                <!--[Enable orientation normalization.]-->
+			<param name="FREAK/PatternScale" value="22"/>                           <!--[Scaling of the description pattern.]-->
+			<param name="FREAK/ScaleNormalized" value="true"/>                      <!--[Enable scale normalization.]-->
+
+			<param name="GFTT/BlockSize" value="3"/>                                <!--[]-->
+			<param name="GFTT/K" value="0.04"/>                                     <!--[]-->
+			<param name="GFTT/MinDistance" value="5"/>                              <!--[]-->
+			<param name="GFTT/QualityLevel" value="0.01"/>                          <!--[]-->
+			<param name="GFTT/UseHarrisDetector" value="false"/>                    <!--[]-->
+
+			<param name="Grid/3D" value="false"/>                                    <!--[A 3D occupancy grid is required if you want an Octomap. Set to false if you want only a 2D map, the cloud will be projected on xy plane. A 2D map can be still generated if checked, but it requires more memory and time to generate it. Ignored if laser scan is 2D and "Grid/FromDepth" is false.]-->
+				<param name="Grid/3DGroundIsObstacle" value="false"/>                   <!--[[Grid/3D=true] Ground is an obstacle. Use this only if you want an Octomap with ground identified as an obstacle (e.g., with an UAV).]-->
+			<param name="Grid/CellSize" value="0.5"/>                              <!--[Resolution of the occupancy grid.]-->
+			<param name="Grid/DepthDecimation" value="4"/>                          <!--[[Grid/DepthDecimation=true] Decimation of the depth image before creating cloud. Negative decimation is done from RGB size instead of depth size (if depth is smaller than RGB, it may be interpolated depending of the decimation value).]-->
+			<param name="Grid/FromDepth" value="true"/>                             <!--[Create occupancy grid from depth image(s), otherwise it is created from laser scan.]-->
+				<param name="Grid/DepthMax" value="4.0"/>                               <!--[[Grid/FromDepth=true] Maximum cloud's depth from sensor. 0=inf.]-->
+				<param name="Grid/DepthMin" value="0.0"/>                               <!--[[Grid/FromDepth=true] Minimum cloud's depth from sensor.]-->
+				<param name="Grid/DepthRoiRatios" value="0.0 0.0 0.0 0.0"/>             <!--[[Grid/FromDepth=true] Region of interest ratios [left, right, top, bottom].]-->
+			<param name="Grid/FootprintHeight" value="0.0"/>                        <!--[Footprint height used to filter points over the footprint of the robot. Footprint length and width should be set.]-->
+			<param name="Grid/FootprintLength" value="0.3"/>                        <!--[Footprint length used to filter points over the footprint of the robot.]-->
+			<param name="Grid/FootprintWidth" value="0.3"/>                         <!--[Footprint width used to filter points over the footprint of the robot. Footprint length should be set.]-->
+
+			<param name="Grid/MapFrameProjection" value="false"/>                   <!--[Projection in map frame. On a 3D terrain and a fixed local camera transform (the cloud is created relative to ground), you may want to disable this to do the projection in robot frame instead.]-->
+			<param name="Grid/MaxGroundHeight" value="0.0"/>                        <!--[Maximum ground height (0=disabled). Should be set if "Grid/NormalsSegmentation" is true.]-->
+			<param name="Grid/MaxObstacleHeight" value="0.5"/>                      <!--[Maximum obstacles height (0=disabled).]-->
+			<param name="Grid/MinGroundHeight" value="0.0"/>                        <!--[Minimum ground height (0=disabled).]-->
+			<param name="Grid/NoiseFilteringMinNeighbors" value="5"/>               <!--[Noise filtering minimum neighbors.]-->
+			<param name="Grid/NoiseFilteringRadius" value="0.00"/>                   <!--[Noise filtering radius (0=disabled). Done after segmentation.]-->
+			<param name="Grid/NormalsSegmentation" value="true"/>                   <!--[Segment ground from obstacles using point normals, otherwise a fast passthrough is used.]-->
+				<param name="Grid/ClusterRadius" value="0.1"/>                          <!--[[Grid/NormalsSegmentation=true] Cluster maximum radius.]-->
+				<param name="Grid/FlatObstacleDetected" value="false"/>                  <!--[[Grid/NormalsSegmentation=true] Flat obstacles detected.]-->
+				<param name="Grid/MaxGroundAngle" value="45"/>                          <!--[[Grid/NormalsSegmentation=true] Maximum angle (degrees) between point's normal to ground's normal to label it as ground. Points with higher angle difference are considered as obstacles.]-->
+				<param name="Grid/MinClusterSize" value="10"/>                          <!--[[Grid/NormalsSegmentation=true] Minimum cluster size to project the points.]-->
+				<param name="Grid/NormalK" value="10"/>                                 <!--[[Grid/NormalsSegmentation=true] K neighbors to compute normals.]-->
+			<param name="Grid/Scan2dMaxFilledRange" value="4.0"/>                   <!--[Unknown space filled maximum range. If 0, the laser scan maximum range is used.]-->
+			<param name="Grid/Scan2dUnknownSpaceFilled" value="false"/>             <!--[Unknown space filled. Only used with 2D laser scans.]-->
+			<param name="Grid/ScanDecimation" value="1"/>                           <!--[[Grid/FromDepth=false] Decimation of the laser scan before creating cloud.]-->
+
+			<param name="Icp/CorrespondenceRatio" value="0.2"/>                     <!--[Ratio of matching correspondences to accept the transform.]-->
+			<param name="Icp/DownsamplingStep" value="1"/>                          <!--[Downsampling step size (1=no sampling). This is done before uniform sampling.]-->
+			<param name="Icp/Epsilon" value="0"/>                                   <!--[Set the transformation epsilon (maximum allowable difference between two consecutive transformations) in order for an optimization to be considered as having converged to the final solution.]-->
+			<param name="Icp/Iterations" value="30"/>                               <!--[Max iterations.]-->
+			<param name="Icp/MaxCorrespondenceDistance" value="0.05"/>              <!--[Max distance for point correspondences.]-->
+			<param name="Icp/MaxRotation" value="0.78"/>                            <!--[Maximum ICP rotation correction accepted (rad).]-->
+			<param name="Icp/MaxTranslation" value="0.2"/>                          <!--[Maximum ICP translation correction accepted (m).]-->
+			<param name="Icp/PointToPlane" value="false"/>                          <!--[Use point to plane ICP.]-->
+			<param name="Icp/PointToPlaneNormalNeighbors" value="20"/>              <!--[Number of neighbors to compute normals for point to plane.]-->
+			<param name="Icp/VoxelSize" value="0.0"/>                               <!--[Uniform sampling voxel size (0=disabled).]-->
+
+			<param name="Kp/BadSignRatio" value="0.5"/>                             <!--[Bad signature ratio (less than Ratio x AverageWordsPerImage = bad).]-->
+			<param name="Kp/DetectorStrategy" value="0"/>                           <!--[0=SURF 1=SIFT 2=ORB 3=FAST/FREAK 4=FAST/BRIEF 5=GFTT/FREAK 6=GFTT/BRIEF 7=BRISK 8=GFTT/ORB.]-->
+			<param name="Kp/DictionaryPath" value=""/>                              <!--[Path of the pre-computed dictionary]-->
+			<param name="Kp/IncrementalDictionary" value="true"/>                   <!--[]-->
+			<param name="Kp/IncrementalFlann" value="true"/>                        <!--[When using FLANN based strategy, add/remove points to its index without always rebuilding the index (the index is built only when the dictionary doubles in size).]-->
+			<param name="Kp/MaxDepth" value="0"/>                                   <!--[Filter extracted keypoints by depth (0=inf).]-->
+			<param name="Kp/MaxFeatures" value="200"/>                              <!--[Maximum features extracted from the images (0 means not bounded, <0 means no extraction).]-->
+			<param name="Kp/MinDepth" value="0"/>                                   <!--[Filter extracted keypoints by depth.]-->
+			<param name="Kp/NNStrategy" value="1"/>                                 <!--[kNNFlannNaive=0, kNNFlannKdTree=1, kNNFlannLSH=2, kNNBruteForce=3, kNNBruteForceGPU=4]-->
+			<param name="Kp/NewWordsComparedTogether" value="true"/>                <!--[When adding new words to dictionary, they are compared also with each other (to detect same words in the same signature).]-->
+			<param name="Kp/NndrRatio" value="0.8"/>                                <!--[NNDR ratio (A matching pair is detected, if its distance is closer than X times the distance of the second nearest neighbor.)]-->
+			<param name="Kp/Parallelized" value="true"/>                            <!--[If the dictionary update and signature creation were parallelized.]-->
+			<param name="Kp/RoiRatios" value="0.0 0.0 0.0 0.0"/>                    <!--[Region of interest ratios [left, right, top, bottom].]-->
+			<param name="Kp/SubPixEps" value="0.02"/>                               <!--[See cv::cornerSubPix().]-->
+			<param name="Kp/SubPixIterations" value="0"/>                           <!--[See cv::cornerSubPix(). 0 disables sub pixel refining.]-->
+			<param name="Kp/SubPixWinSize" value="3"/>                              <!--[See cv::cornerSubPix().]-->
+			<param name="Kp/TfIdfLikelihoodUsed" value="true"/>                     <!--[Use of the td-idf strategy to compute the likelihood.]-->
+
+			<param name="Mem/BadSignaturesIgnored" value="false"/>                  <!--[Bad signatures are ignored.]-->
+			<param name="Mem/BinDataKept" value="true"/>                            <!--[Keep binary data in db.]-->
+			<param name="Mem/GenerateIds" value="true"/>                            <!--[True=Generate location IDs, False=use input image IDs.]-->
+			<param name="Mem/ImageKept" value="false"/>                             <!--[Keep raw images in RAM.]-->
+			<param name="Mem/ImagePostDecimation" value="1"/>                       <!--[Image decimation (>=1) of saved data in created signatures (after features extraction). Decimation is done from the original image. Negative decimation is done from RGB size instead of depth size (if depth is smaller than RGB, it may be interpolated depending of the decimation value).]-->
+			<param name="Mem/ImagePreDecimation" value="1"/>                        <!--[Image decimation (>=1) before features extraction. Negative decimation is done from RGB size instead of depth size (if depth is smaller than RGB, it may be interpolated depending of the decimation value).]-->
+			<param name="Mem/InitWMWithAllNodes" value="false"/>                    <!--[Initialize the Working Memory with all nodes in Long-Term Memory. When false, it is initialized with nodes of the previous session.]-->
+			<param name="Mem/LaserScanDownsampleStepSize" value="1"/>               <!--[If > 1, downsample the laser scans when creating a signature.]-->
+			<param name="Mem/LaserScanNormalK" value="0"/>                          <!--[If > 0 and laser scans are 3D without normals, normals will be computed with K search neighbors when creating a signature.]-->
+			<param name="Mem/MapLabelsAdded" value="true"/>                         <!--[Create map labels. The first node of a map will be labelled as "map#" where # is the map ID.]-->
+			<param name="Mem/NotLinkedNodesKept" value="true"/>                     <!--[Keep not linked nodes in db (rehearsed nodes and deleted nodes).]-->
+			<param name="Mem/RawDescriptorsKept" value="true"/>                     <!--[Raw descriptors kept in memory.]-->
+			<param name="Mem/RecentWmRatio" value="0.2"/>                           <!--[Ratio of locations after the last loop closure in WM that cannot be transferred.]-->
+			<param name="Mem/ReduceGraph" value="false"/>                           <!--[Reduce graph. Merge nodes when loop closures are added (ignoring those with user data set).]-->
+			<param name="Mem/RehearsalIdUpdatedToNewOne" value="false"/>            <!--[On merge, update to new id. When false, no copy.]-->
+			<param name="Mem/RehearsalSimilarity" value="0.6"/>                     <!--[Rehearsal similarity.]-->
+			<param name="Mem/RehearsalWeightIgnoredWhileMoving" value="false"/>     <!--[When the robot is moving, weights are not updated on rehearsal.]-->
+			<param name="Mem/STMSize" value="10"/>                                  <!--[Short-term memory size.]-->
+			<param name="Mem/SaveDepth16Format" value="false"/>                     <!--[Save depth image into 16 bits format to reduce memory used. Warning: values over ~65 meters are ignored (maximum 65535 millimeters).]-->
+			<param name="Mem/TransferSortingByWeightId" value="false"/>             <!--[On transfer, signatures are sorted by weight->ID only (i.e. the oldest of the lowest weighted signatures are transferred first). If false, the signatures are sorted by weight->Age->ID (i.e. the oldest inserted in WM of the lowest weighted signatures are transferred first). Note that retrieval updates the age, not the ID.]-->
+			<param name="Mem/UseOdomFeatures" value="false"/>                       <!--[Use odometry features.]-->
+
+			<param name="ORB/EdgeThreshold" value="31"/>                            <!--[This is size of the border where the features are not detected. It should roughly match the patchSize parameter.]-->
+			<param name="ORB/FirstLevel" value="0"/>                                <!--[It should be 0 in the current implementation.]-->
+			<param name="ORB/Gpu" value="false"/>                                   <!--[GPU-ORB: Use GPU version of ORB. This option is enabled only if OpenCV is built with CUDA and GPUs are detected.]-->
+			<param name="ORB/NLevels" value="8"/>                                   <!--[The number of pyramid levels. The smallest level will have linear size equal to input_image_linear_size/pow(scaleFactor, nlevels).]-->
+			<param name="ORB/PatchSize" value="31"/>                                <!--[size of the patch used by the oriented BRIEF descriptor. Of course, on smaller pyramid layers the perceived image area covered by a feature will be larger.]-->
+			<param name="ORB/ScaleFactor" value="1.2"/>                             <!--[Pyramid decimation ratio, greater than 1. scaleFactor==2 means the classical pyramid, where each next level has 4x less pixels than the previous, but such a big scale factor will degrade feature matching scores dramatically. On the other hand, too close to 1 scale factor will mean that to cover certain scale range you will need more pyramid levels and so the speed will suffer.]-->
+			<param name="ORB/ScoreType" value="0"/>                                 <!--[The default HARRIS_SCORE=0 means that Harris algorithm is used to rank features (the score is written to KeyPoint::score and is used to retain best nfeatures features); FAST_SCORE=1 is alternative value of the parameter that produces slightly less stable keypoints, but it is a little faster to compute.]-->
+			<param name="ORB/WTA_K" value="2"/>                                     <!--[The number of points that produce each element of the oriented BRIEF descriptor. The default value 2 means the BRIEF where we take a random point pair and compare their brightnesses, so we get 0/1 response. Other possible values are 3 and 4. For example, 3 means that we take 3 random points (of course, those point coordinates are random, but they are generated from the pre-defined seed, so each element of BRIEF descriptor is computed deterministically from the pixel rectangle), find point of maximum brightness and output index of the winner (0, 1 or 2). Such output will occupy 2 bits, and therefore it will need a special variant of Hamming distance, denoted as NORM_HAMMING2 (2 bits per bin). When WTA_K=4, we take 4 random points to compute each bin (that will also occupy 2 bits with possible values 0, 1, 2 or 3).]-->
+
+			<param name="Optimizer/Epsilon" value="0.00001"/>                       <!--[Stop optimizing when the error improvement is less than this value.]-->
+			<param name="Optimizer/Iterations" value="100"/>                        <!--[Optimization iterations.]-->
+			<param name="Optimizer/Robust" value="false"/>                          <!--[Robust graph optimization using Vertigo (only work for g2o and GTSAM optimization strategies). Not compatible with "RGBD/OptimizeMaxError" if enabled.]-->
+			<param name="Optimizer/Strategy" value="0"/>                            <!--[Graph optimization strategy: 0=TORO, 1=g2o and 2=GTSAM.]-->
+			<param name="Optimizer/VarianceIgnored" value="false"/>                 <!--[Ignore constraints' variance. If checked, identity information matrix is used for each constraint. Otherwise, an information matrix is generated from the variance saved in the links.]-->
+
+			<param name="RGBD/AngularUpdate" value="0.1"/>                          <!--[Minimum angular displacement to update the map. Rehearsal is done prior to this, so weights are still updated.]-->
+			<param name="RGBD/CreateOccupancyGrid" value="true"/>                   <!--[Create local occupancy grid maps. See "Grid" group for parameters.]-->
+			<param name="RGBD/Enabled" value="true"/>                               <!--[]-->
+			<param name="RGBD/GoalReachedRadius" value="0.5"/>                      <!--[Goal reached radius (m).]-->
+			<param name="RGBD/GoalsSavedInUserData" value="false"/>                 <!--[When a goal is received and processed with success, it is saved in user data of the location with this format: "GOAL:#".]-->
+			<param name="RGBD/LinearUpdate" value="0.1"/>                           <!--[Minimum linear displacement to update the map. Rehearsal is done prior to this, so weights are still updated.]-->
+			<param name="RGBD/LocalImmunizationRatio" value="0.25"/>                <!--[Ratio of working memory for which local nodes are immunized from transfer.]-->
+			<param name="RGBD/LocalRadius" value="10"/>                             <!--[Local radius (m) for nodes selection in the local map. This parameter is used in some approaches about the local map management.]-->
+			<param name="RGBD/LoopClosureReextractFeatures" value="false"/>         <!--[Extract features even if there are some already in the nodes.]-->
+			<param name="RGBD/MaxLocalRetrieved" value="2"/>                        <!--[Maximum local locations retrieved (0=disabled) near the current pose in the local map or on the current planned path (those on the planned path have priority).]-->
+			<param name="RGBD/NeighborLinkRefining" value="false"/>                 <!--[When a new node is added to the graph, the transformation of its neighbor link to the previous node is refined using registration approach selected (Reg/Strategy).]-->
+			<param name="RGBD/NewMapOdomChangeDistance" value="0"/>                 <!--[A new map is created if a change of odometry translation greater than X m is detected (0 m = disabled).]-->
+			<param name="RGBD/OptimizeFromGraphEnd" value="true"/>                 <!--[Optimize graph from the newest node. If false, the graph is optimized from the oldest node of the current graph (this adds an overhead computation to detect to oldest mode of the current graph, but it can be useful to preserve the map referential from the oldest node). Warning when set to false: when some nodes are transferred, the first referential of the local map may change, resulting in momentary changes in robot/map position (which are annoying in teleoperation).]-->
+			<param name="RGBD/OptimizeMaxError" value="3"/>                         <!--[Reject loop closures if optimization error is greater than this value (0=disabled). This will help to detect when a wrong loop closure is added to the graph. Not compatible with "Optimizer/Robust" if enabled.]-->
+			<param name="RGBD/PlanAngularVelocity" value="0"/>                      <!--[Angular velocity (rad/sec) used to compute path weights.]-->
+			<param name="RGBD/PlanLinearVelocity" value="0"/>                       <!--[Linear velocity (m/sec) used to compute path weights.]-->
+			<param name="RGBD/PlanStuckIterations" value="0"/>                      <!--[Mark the current goal node on the path as unreachable if it is not updated after X iterations (0=disabled). If all upcoming nodes on the path are unreachabled, the plan fails.]-->
+			<param name="RGBD/ProximityAngle" value="45"/>                          <!--[Maximum angle (degrees) for visual proximity detection.]-->
+			<param name="RGBD/ProximityBySpace" value="true"/>                      <!--[Detection over locations (in Working Memory or STM) near in space.]-->
+			<param name="RGBD/ProximityByTime" value="false"/>                      <!--[Detection over all locations in STM.]-->
+			<param name="RGBD/ProximityMaxGraphDepth" value="50"/>                  <!--[Maximum depth from the current/last loop closure location and the local loop closure hypotheses. Set 0 to ignore.]-->
+			<param name="RGBD/ProximityMaxPaths" value="3"/>                        <!--[Maximum paths compared (from the most recent) for proximity detection by space. 0 means no limit.]-->
+			<param name="RGBD/ProximityPathFilteringRadius" value="0.5"/>           <!--[Path filtering radius to reduce the number of nodes to compare in a path. A path should also be inside that radius to be considered for proximity detection.]-->
+			<param name="RGBD/ProximityPathMaxNeighbors" value="10"/>               <!--[Maximum neighbor nodes compared on each path.]-->
+			<param name="RGBD/ProximityPathRawPosesUsed" value="true"/>             <!--[When comparing to a local path, merge the scan using the odometry poses (with neighbor link optimizations) instead of the ones in the optimized local graph.]-->
+			<param name="RGBD/ScanMatchingIdsSavedInLinks" value="true"/>           <!--[Save scan matching IDs in link's user data.]-->
+
+			<param name="Reg/Force3DoF" value="true"/>                             <!--[Force 3 degrees-of-freedom transform (3Dof: x,y and yaw). Parameters z, roll and pitch will be set to 0.]-->
+			<param name="Reg/Strategy" value="0"/>                                  <!--[0=Vis, 1=Icp, 2=VisIcp]-->
+			<param name="Reg/VarianceFromInliersCount" value="false"/>              <!--[Set variance as the inverse of the number of inliers. Otherwise, the variance is computed as the average 3D position error of the inliers.]-->
+
+			<param name="Rtabmap/CreateIntermediateNodes" value="false"/>           <!--[Create intermediate nodes between loop closure detection. Only used when Rtabmap/DetectionRate>0.]-->
+			<param name="Rtabmap/DetectionRate" value="1"/>                         <!--[Detection rate. RTAB-Map will filter input images to satisfy this rate.]-->
+			<param name="Rtabmap/ImageBufferSize" value="10"/>                       <!--[Data buffer size (0 min inf).]-->
+			<param name="Rtabmap/LoopRatio" value="0"/>                             <!--[The loop closure hypothesis must be over LoopRatio x lastHypothesisValue.]-->
+			<param name="Rtabmap/LoopThr" value="0.11"/>                            <!--[Loop closing threshold.]-->
+			<param name="Rtabmap/MaxRetrieved" value="2"/>                          <!--[Maximum locations retrieved at the same time from LTM.]-->
+			<param name="Rtabmap/MemoryThr" value="0"/>                             <!--[Maximum signatures in the Working Memory (ms) (0 means infinity).]-->
+			<param name="Rtabmap/PublishLastSignature" value="true"/>               <!--[Publishing last signature.]-->
+			<param name="Rtabmap/PublishLikelihood" value="true"/>                  <!--[Publishing likelihood.]-->
+			<param name="Rtabmap/PublishPdf" value="true"/>                         <!--[Publishing pdf.]-->
+			<param name="Rtabmap/PublishStats" value="true"/>                       <!--[Publishing statistics.]-->
+			<param name="Rtabmap/StartNewMapOnLoopClosure" value="false"/>          <!--[Start a new map only if there is a global loop closure with a previous map.]-->
+			<param name="Rtabmap/StatisticLogged" value="false"/>                   <!--[Logging enabled.]-->
+			<param name="Rtabmap/StatisticLoggedHeaders" value="true"/>             <!--[Add column header description to log files.]-->
+			<param name="Rtabmap/StatisticLogsBufferedInRAM" value="true"/>         <!--[Statistic logs buffered in RAM instead of written to hard drive after each iteration.]-->
+			<param name="Rtabmap/TimeThr" value="0"/>                               <!--[Maximum time allowed for the detector (ms) (0 means infinity).]-->
+			<param name="Rtabmap/VhStrategy" value="0"/>                            <!--[None 0, Similarity 1, Epipolar 2.]-->
+			<param name="Rtabmap/WorkingDirectory" value="/home/taeho/.ros"/>       <!--[Working directory.]-->
+
+			<param name="SIFT/ContrastThreshold" value="0.04"/>                     <!--[The contrast threshold used to filter out weak features in semi-uniform (low-contrast) regions. The larger the threshold, the less features are produced by the detector.]-->
+			<param name="SIFT/EdgeThreshold" value="10"/>                           <!--[The threshold used to filter out edge-like features. Note that the its meaning is different from the contrastThreshold, i.e. the larger the edgeThreshold, the less features are filtered out (more features are retained).]-->
+			<param name="SIFT/NFeatures" value="0"/>                                <!--[The number of best features to retain. The features are ranked by their scores (measured in SIFT algorithm as the local contrast).]-->
+			<param name="SIFT/NOctaveLayers" value="3"/>                            <!--[The number of layers in each octave. 3 is the value used in D. Lowe paper. The number of octaves is computed automatically from the image resolution.]-->
+			<param name="SIFT/Sigma" value="1.6"/>                                  <!--[The sigma of the Gaussian applied to the input image at the octave #0. If your image is captured with a weak camera with soft lenses, you might want to reduce the number.]-->
+
+			<param name="SURF/Extended" value="false"/>                             <!--[Extended descriptor flag (true - use extended 128-element descriptors; false - use 64-element descriptors).]-->
+			<param name="SURF/GpuKeypointsRatio" value="0.01"/>                     <!--[Used with SURF GPU.]-->
+			<param name="SURF/GpuVersion" value="false"/>                           <!--[GPU-SURF: Use GPU version of SURF. This option is enabled only if OpenCV is built with CUDA and GPUs are detected.]-->
+			<param name="SURF/HessianThreshold" value="500"/>                       <!--[Threshold for hessian keypoint detector used in SURF.]-->
+			<param name="SURF/OctaveLayers" value="2"/>                             <!--[Number of octave layers within each octave.]-->
+			<param name="SURF/Octaves" value="4"/>                                  <!--[Number of pyramid octaves the keypoint detector will use.]-->
+			<param name="SURF/Upright" value="false"/>                              <!--[Up-right or rotated features flag (true - do not compute orientation of features; false - compute orientation).]-->
+
+			<param name="Stereo/Eps" value="0.01"/>                                 <!--[[Stereo/OpticalFlow=true] Epsilon stop criterion.]-->
+			<param name="Stereo/Iterations" value="30"/>                            <!--[Maximum iterations.]-->
+			<param name="Stereo/MaxDisparity" value="128"/>                         <!--[Maximum disparity.]-->
+			<param name="Stereo/MaxLevel" value="3"/>                               <!--[Maximum pyramid level.]-->
+			<param name="Stereo/MinDisparity" value="1"/>                           <!--[Minimum disparity.]-->
+			<param name="Stereo/OpticalFlow" value="true"/>                         <!--[Use optical flow to find stereo correspondences, otherwise a simple block matching approach is used.]-->
+			<param name="Stereo/SSD" value="true"/>                                 <!--[[Stereo/OpticalFlow=false] Use Sum of Squared Differences (SSD) window, otherwise Sum of Absolute Differences (SAD) window is used.]-->
+			<param name="Stereo/WinHeight" value="3"/>                              <!--[Window height.]-->
+			<param name="Stereo/WinWidth" value="15"/>                              <!--[Window width.]-->
+
+			<param name="StereoBM/BlockSize" value="15"/>                           <!--[See cv::StereoBM]-->
+			<param name="StereoBM/MinDisparity" value="0"/>                         <!--[See cv::StereoBM]-->
+			<param name="StereoBM/NumDisparities" value="128"/>                     <!--[See cv::StereoBM]-->
+			<param name="StereoBM/PreFilterCap" value="31"/>                        <!--[See cv::StereoBM]-->
+			<param name="StereoBM/PreFilterSize" value="9"/>                        <!--[See cv::StereoBM]-->
+			<param name="StereoBM/SpeckleRange" value="4"/>                         <!--[See cv::StereoBM]-->
+			<param name="StereoBM/SpeckleWindowSize" value="100"/>                  <!--[See cv::StereoBM]-->
+			<param name="StereoBM/TextureThreshold" value="10"/>                    <!--[See cv::StereoBM]-->
+			<param name="StereoBM/UniquenessRatio" value="15"/>                     <!--[See cv::StereoBM]-->
+
+			<param name="VhEp/MatchCountMin" value="8"/>                            <!--[Minimum of matching visual words pairs to accept the loop hypothesis.]-->
+			<param name="VhEp/RansacParam1" value="3"/>                             <!--[Fundamental matrix (see cvFindFundamentalMat()): Max distance (in pixels) from the epipolar line for a point to be inlier.]-->
+			<param name="VhEp/RansacParam2" value="0.99"/>                          <!--[Fundamental matrix (see cvFindFundamentalMat()): Performance of the RANSAC.]-->
+
+			<param name="Vis/BundleAdjustment" value="0"/>                          <!--[Optimization with bundle adjustment: 0=disabled, 1=g2o, 2=cvsba.]-->
+			<param name="Vis/CorType" value="0"/>                                   <!--[Correspondences computation approach: 0=Features Matching, 1=Optical Flow]-->
+				<param name="Vis/CorFlowEps" value="0.01"/>                             <!--[[Vis/CorType=1] See cv::calcOpticalFlowPyrLK(). Used for optical flow approach.]-->
+				<param name="Vis/CorFlowIterations" value="30"/>                        <!--[[Vis/CorType=1] See cv::calcOpticalFlowPyrLK(). Used for optical flow approach.]-->
+				<param name="Vis/CorFlowMaxLevel" value="3"/>                           <!--[[Vis/CorType=1] See cv::calcOpticalFlowPyrLK(). Used for optical flow approach.]-->
+				<param name="Vis/CorFlowWinSize" value="16"/>                           <!--[[Vis/CorType=1] See cv::calcOpticalFlowPyrLK(). Used for optical flow approach.]-->
+				<param name="Vis/CorGuessWinSize" value="20"/>                          <!--[[Vis/CorType=0] Matching window size (pixels) around projected points when a guess transform is provided to find correspondences. 0 means disabled.]-->
+				<param name="Vis/CorNNDR" value="0.6"/>                                 <!--[[Vis/CorType=0] NNDR: nearest neighbor distance ratio. Used for features matching approach.]-->
+				<param name="Vis/CorNNType" value="1"/>                                 <!--[[Vis/CorType=0] kNNFlannNaive=0, kNNFlannKdTree=1, kNNFlannLSH=2, kNNBruteForce=3, kNNBruteForceGPU=4. Used for features matching approach.]-->
+			<param name="Vis/EstimationType" value="1"/>                            <!--[Motion estimation approach: 0:3D->3D, 1:3D->2D (PnP), 2:2D->2D (Epipolar Geometry)]-->
+				<param name="Vis/EpipolarGeometryVar" value="0.02"/>                    <!--[[Vis/EstimationType = 2] Epipolar geometry maximum variance to accept the transformation.]-->
+				<param name="Vis/InlierDistance" value="0.1"/>                          <!--[[Vis/EstimationType = 0] Maximum distance for feature correspondences. Used by 3D->3D estimation approach.]-->
+				<param name="Vis/PnPFlags" value="0"/>                                  <!--[[Vis/EstimationType = 1] PnP flags: 0=Iterative, 1=EPNP, 2=P3P]-->
+				<param name="Vis/PnPRefineIterations" value="1"/>                       <!--[[Vis/EstimationType = 1] Refine iterations.]-->
+				<param name="Vis/PnPReprojError" value="2"/>                            <!--[[Vis/EstimationType = 1] PnP reprojection error.]-->
+				<param name="Vis/RefineIterations" value="5"/>                          <!--[[Vis/EstimationType = 0] Number of iterations used to refine the transformation found by RANSAC. 0 means that the transformation is not refined.]-->
+			<param name="Vis/FeatureType" value="1"/>                               <!--[0=SURF 1=SIFT 2=ORB 3=FAST/FREAK 4=FAST/BRIEF 5=GFTT/FREAK 6=GFTT/BRIEF 7=BRISK 8=GFTT/ORB.]-->
+			<param name="Vis/ForwardEstOnly" value="false"/>                         <!--[Forward estimation only (A->B). If false, a transformation is also computed in backward direction (B->A), then the two resulting transforms are merged (middle interpolation between the transforms).]-->
+			<param name="Vis/Iterations" value="100"/>                              <!--[Maximum iterations to compute the transform.]-->
+			<param name="Vis/MaxDepth" value="0"/>                                  <!--[Max depth of the features (0 means no limit).]-->
+			<param name="Vis/MaxFeatures" value="200"/>                            <!--[0 no limits.]-->
+			<param name="Vis/MinDepth" value="0"/>                                  <!--[Min depth of the features (0 means no limit).]-->
+			<param name="Vis/MinInliers" value="20"/>                               <!--[Minimum feature correspondences to compute/accept the transformation.]-->
+			<param name="Vis/RoiRatios" value="0.0 0.0 0.0 0.0"/>                   <!--[Region of interest ratios [left, right, top, bottom].]-->
+			<param name="Vis/SubPixEps" value="0.02"/>                              <!--[See cv::cornerSubPix().]-->
+			<param name="Vis/SubPixIterations" value="0"/>                          <!--[See cv::cornerSubPix(). 0 disables sub pixel refining.]-->
+			<param name="Vis/SubPixWinSize" value="3"/>                             <!--[See cv::cornerSubPix().]-->
+
+			<param name="g2o/Baseline" value="0.075"/>                              <!--[When doing bundle adjustment with RGB-D data, we can set a fake baseline (m) to do stereo bundle adjustment (if 0, mono bundle adjustment is done). For stereo data, the baseline in the calibration is used directly.]-->
+			<param name="g2o/Optimizer" value="0"/>                                 <!--[0=Levenberg 1=GaussNewton]-->
+			<param name="g2o/PixelVariance" value="1.0"/>                           <!--[Pixel variance used for bundle adjustment.]-->
+			<param name="g2o/RobustKernelDelta" value="8"/>                         <!--[Robust kernel delta used for bundle adjustment (0 means don't use robust kernel). Observations with chi2 over this threshold will be ignored in the second optimization pass.]-->
+
