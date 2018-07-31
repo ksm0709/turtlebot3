@@ -16,6 +16,7 @@ planners:   # defined in planner.yaml
 
 controllers: # defined in controller.yaml
   - { name: dwa_controller, type: "dwa_local_planner/DWAPlannerROS"}
+  - { name: direction_controller, type: "dwa_local_planner/DWAPlannerROS"}
 
 recovery_behaviors:
   - name: 'rotate_recovery'
@@ -23,27 +24,3 @@ recovery_behaviors:
   - name: 'clear_costmap'
     type: 'clear_costmap_recovery/ClearCostmapRecovery'
 
-plugins: 
-  - { name: static_map, type: "costmap_2d::StaticLayer" }
-  - { name: obstacles, type: "costmap_2d::VoxelLayer" }
-  - { name: inflation, type: "costmap_2d::InflationLayer" }
-  
-obstacles:
-  map_type: voxel
-  publish_voxel_map: true
-
-  observation_sources: scan
-  scan: {sensor_frame: laser, data_type: LaserScan, topic: scan, marking: true, clearing: true}
-  
-  obstacle_range: 2.5
-  raytrace_range: 3.5
-  footprint: [[-0.205, -0.145], [-0.205, 0.145], [0.077, 0.145], [0.077, -0.145]]
-  #robot_radius: 0.17
-
-  max_obstacle_height: 0.4
-  z_resolution: 0.05
-  z_voxels: 10
-  
-inflation:
-  inflation_radius: 2.0
-  cost_scaling_factor: 3.0

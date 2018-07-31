@@ -18,7 +18,7 @@
 
   <node pkg="mbf_costmap_nav" type="mbf_costmap_nav" respawn="false" name="move_base_flex" output="screen">
     <rosparam file="$(find turtlebot3_navigation)/param/move_base_params.yaml" command="load" />
-    <rosparam file="$(find turtlebot3_navigation)/param/controller.yaml" command="load" />
+    <rosparam file="$(find turtlebot3_navigation)/param/controller_dwa.yaml" command="load" />
     <rosparam file="$(find turtlebot3_navigation)/param/planner.yaml" command="load" />
 
     <rosparam file="$(find turtlebot3_navigation)/param/costmap_common_params_$(arg model).yaml" command="load" ns="global_costmap" />
